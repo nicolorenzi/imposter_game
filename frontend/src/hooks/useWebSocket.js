@@ -12,10 +12,10 @@ function useWebSocket({ onLobbyCreated, onLobbyUpdate, onGameStarted, onGameEnde
   }, [onLobbyCreated, onLobbyUpdate, onGameStarted, onGameEnded, onRevealImposter]);
 
   useEffect(() => {
-    const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || 
-      (window.location.protocol === 'https:' ? 'wss:' : 'ws:') + '//' + window.location.host;
-    const wsUrl = `${BACKEND_URL}/ws`;
-    
+    // Use same domain for both frontend and backend
+    const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+    const wsUrl = `${protocol}//${window.location.host}/ws`;
+  
     console.log("Connecting to WebSocket:", wsUrl);
     socket.current = new WebSocket(wsUrl);
 
