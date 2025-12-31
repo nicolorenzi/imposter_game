@@ -5,7 +5,7 @@
       "src": "frontend/package.json",
       "use": "@vercel/static-build",
       "config": {
-        "distDir": "dist"
+        "distDir": "frontend/dist"
       }
     },
     {
@@ -16,6 +16,10 @@
   "routes": [
     {
       "src": "/ws",
+      "dest": "backend/main.py"
+    },
+    {
+      "src": "/docs",
       "dest": "backend/main.py"
     },
     {
