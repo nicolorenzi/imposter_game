@@ -1,0 +1,4 @@
+Connect the two so one can host and join (test in another tab)
+Create Lobby page with start button after creating a lobby (allow joiner to get to lobby page)
+
+Begin making game (if UI is good *maybe separate a desktop styling and mobile styling)
