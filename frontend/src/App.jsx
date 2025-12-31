@@ -9,7 +9,7 @@ import EndGame from "./pages/EndGame";
 
 function App() {
   // Game state
-  const [currentPage, setCurrentPage] = useState("home"); // "home" | "hostSetup" | "joinSetup" | "lobby" | "game" | "results"
+  const [currentPage, setCurrentPage] = useState("home"); 
   const [name, setName] = useState("");
   const [roomCode, setRoomCode] = useState("");
   const [roomCodeInput, setRoomCodeInput] = useState("");
