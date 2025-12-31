@@ -12,8 +12,12 @@ function useWebSocket({ onLobbyCreated, onLobbyUpdate, onGameStarted, onGameEnde
   }, [onLobbyCreated, onLobbyUpdate, onGameStarted, onGameEnded, onRevealImposter]);
 
   useEffect(() => {
-    console.log("Connecting to WebSocket...");
-    socket.current = new WebSocket("ws://localhost:8000/ws");
+    const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || 
+      (window.location.protocol === 'https:' ? 'wss:' : 'ws:') + '//' + window.location.host;
+    const wsUrl = `${BACKEND_URL}/ws`;
+    
+    console.log("Connecting to WebSocket:", wsUrl);
+    socket.current = new WebSocket(wsUrl);
 
     socket.current.onopen = () => {
       console.log("WebSocket connected");
