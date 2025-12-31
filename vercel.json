@@ -26,5 +26,6 @@
       "src": "/(.*)",
       "dest": "frontend/dist/$1"
     }
-  ]
+  ],
+  "outputDirectory": "frontend/dist"
 }
