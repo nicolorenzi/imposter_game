@@ -8,7 +8,6 @@ import Game from "./pages/Game";
 import EndGame from "./pages/EndGame";
 
 function App() {
-  // Game state
   const [currentPage, setCurrentPage] = useState("home"); 
   const [name, setName] = useState("");
   const [roomCode, setRoomCode] = useState("");
