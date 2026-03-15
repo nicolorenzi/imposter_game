@@ -32,7 +32,7 @@ function LobbyPage({ roomCode, players, onStartGame, onLeaveLobby, onToggleReady
             className={`btn ${isReady ? "btn-primary" : "btn-muted"}`}
             onClick={onToggleReady}
           >
-            {isReady ? "Ready" : "Not Ready"}
+            {isReady ? "Not Ready" : "Ready"}
           </button>
           {isHost && (
             <button className="btn btn-primary" onClick={onStartGame} disabled={!allPlayersReady}>

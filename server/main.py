@@ -18,7 +18,7 @@ from typing import Dict
 from fastapi import FastAPI, WebSocket
 from fastapi.middleware.cors import CORSMiddleware
 
-DEFAULT_CATEGORIES = {
+_CATEGORY_SOURCE = {
     "animals": [
         "dog", "cat", "elephant", "giraffe", "lion", "tiger", "bear",
         "monkey", "zebra", "penguin", "dolphin", "shark", "eagle", "parrot",
@@ -115,6 +115,14 @@ DEFAULT_CATEGORIES = {
         "gift wrapping", "Christmas Eve", "nativity scene", "star", "angel",
         "eggnog", "fruitcake", "Christmas cookies", "advent calendar"
     ]
+}
+
+def _title_case(text: str) -> str:
+    return text.title()
+
+DEFAULT_CATEGORIES = {
+    _title_case(name): [_title_case(entry) for entry in entries]
+    for name, entries in _CATEGORY_SOURCE.items()
 }
 
 logging.basicConfig(level=logging.INFO)
