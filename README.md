@@ -32,7 +32,7 @@ Vite runs on http://localhost:5173 and proxies WebSocket traffic to the backend 
 Start the backend first so the WebSocket is live, then boot the frontend. The client automatically connects to `/ws`, so no extra proxy configuration is required.
 
 ## Game data
-Add or adjust word categories inside `server/data.py` to change the universe of prompts the civilians and imposter see.
+The backend ships with a built-in set of categories inside `server/main.py`. If you need to override the defaults, create a local `server/data.py` (it is gitignored) that defines a `CATEGORIES` dict and the server will prefer it when present.
 
 ## Licensing
 This project is open source; feel free to fork and improve the experience.
