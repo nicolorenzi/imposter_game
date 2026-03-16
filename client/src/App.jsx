@@ -7,10 +7,7 @@ import LobbyPage from "./pages/Lobby";
 import Game from "./pages/Game";
 import EndGame from "./pages/EndGame";
 
-/**
- * Main App component for the Imposter Game.
- * Manages application state and page navigation.
- */
+// Manages application state and page navigation
 function App() {
   const [currentPage, setCurrentPage] = useState("home"); 
   const [name, setName] = useState("");

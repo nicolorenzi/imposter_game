@@ -36,7 +36,7 @@ _CATEGORY_SOURCE = {
         "beach", "mountain", "desert", "forest", "city", "airport", "hospital",
         "school", "restaurant", "gym", "library", "park", "zoo", "museum",
         "cinema", "mall", "hotel", "cafe", "subway", "train station", "harbor",
-        "lighthouse", "castle", "pyramid", "temple", "church", "stadium", "bridge",
+        "lighthouse", "castle", "pyramid", "church", "stadium", "bridge",
         "skyscraper", "farm"
     ],
     "occupations": [
@@ -50,7 +50,7 @@ _CATEGORY_SOURCE = {
         "hockey", "volleyball", "boxing", "skiing", "surfing", "skateboarding",
         "rugby", "cricket", "badminton", "table tennis", "martial arts", "cycling",
         "running", "gymnastics", "wrestling", "fencing", "archery", "bowling",
-        "rock climbing", "ice skating", "snowboarding", "lacrosse", "polo", "rowing"
+        "rock climbing", "ice skating", "snowboarding", "lacrosse", "rowing"
     ],
     "films": [
         "Titanic", "Avatar", "The Godfather", "Star Wars", "Jurassic Park",
@@ -62,11 +62,9 @@ _CATEGORY_SOURCE = {
     ],
     "video Games": [
         "Minecraft", "Fortnite", "Roblox", "Grand Theft Auto", "Call of Duty",
-        "FIFA", "Pokemon", "Mario Kart", "Super Mario", "The Legend of Zelda",
-        "Among Us", "League of Legends", "Overwatch", "Valorant", "Apex Legends",
-        "Counter-Strike", "Rocket League", "Fall Guys", "Animal Crossing", "Sims",
-        "Tetris", "Pac-Man", "Street Fighter", "Mortal Kombat", "Sonic",
-        "Donkey Kong", "Halo"
+        "FIFA", "Pokemon", "Mario Kart", "Super Mario", "Among Us", "League of Legends", 
+        "Overwatch", "Valorant", "Apex Legends", "Rocket League", "Fall Guys", "Sims", 
+        "Tetris", "Pac-Man", "Mortal Kombat", "Sonic", "Donkey Kong"
     ],
     "Soccer Players": [
         "Lionel Messi", "Cristiano Ronaldo", "Neymar", "Kylian Mbappe", "Erling Haaland",
@@ -83,8 +81,7 @@ _CATEGORY_SOURCE = {
         "Signing of Declaration of Independence", "Discovery of America", "Renaissance",
         "Cold War", "Vietnam War", "Civil Rights Movement",
         "Pearl Harbor", "D-Day", "Titanic Sinking", "First Flight", "Internet Invention",
-        "Fall of Roman Empire", "Black Death", "Boston Tea Party",
-        "Watergate Scandal", "Chernobyl Disaster"
+        "Fall of Roman Empire", "Black Death", "Boston Tea Party", "Chernobyl Disaster"
     ],
     "school": [
         "classroom", "homework", "exam", "backpack", "textbook", "pencil",

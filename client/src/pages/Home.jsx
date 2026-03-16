@@ -1,7 +1,3 @@
-/**
- * Home page component displaying the main menu.
- * Allows users to choose between hosting or joining a game.
- */
 function HomePage({ onHostGame, onJoinGame, isConnected }) {
   const statusClass = isConnected ? "status-connected" : "status-disconnected";
 
