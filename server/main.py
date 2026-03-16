@@ -136,7 +136,7 @@ app = FastAPI(title="Imposter Game API", description="Backend for the Imposter w
 # Allow frontend dev server to connect
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # In production, specify allowed origins
+    allow_origins=["imposter-game-xamy.vercel.app"],  
     allow_methods=["*"],
     allow_headers=["*"],
 )
