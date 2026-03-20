@@ -5,7 +5,7 @@ function HomePage({ onHostGame, onJoinGame, isConnected }) {
     <main className="page-shell">
       <section className="page-card">
         <h1 className="page-title">Imposter Game</h1>
-        <p className={`status-pill ${statusClass}`}>{isConnected ? "Connected" : "Connecting..."}</p>
+        <p className={`status-pill ${statusClass}`}>{isConnected ? "Connected" : "Waking up server... (~30 seconds)"}</p>
 
         <div className="button-group">
           <button className="btn btn-primary" onClick={onHostGame} disabled={!isConnected}>
