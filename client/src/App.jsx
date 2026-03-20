@@ -9,7 +9,7 @@ import EndGame from "./pages/EndGame";
 
 // Manages application state and page navigation
 function App() {
-  const [currentPage, setCurrentPage] = useState("home"); 
+  const [currentPage, setCurrentPage] = useState("home");
   const [name, setName] = useState("");
   const [roomCode, setRoomCode] = useState("");
   const [roomCodeInput, setRoomCodeInput] = useState("");
@@ -18,6 +18,8 @@ function App() {
   const [playerRole, setPlayerRole] = useState(null);
   const [maxPlayers, setMaxPlayers] = useState("");
   const [gameData, setGameData] = useState(null);
+  const [joinLobbyError, setJoinLobbyError] = useState("");
+  const clearJoinLobbyError = useCallback(() => setJoinLobbyError(""), []);
 
   const handleLobbyCreated = useCallback((data) => {
     setRoomCode(data.room_code);
@@ -27,8 +29,9 @@ function App() {
 
   const handleLobbyUpdate = useCallback((data) => {
     setPlayers(data.players);
+    clearJoinLobbyError();
     setCurrentPage((current) => current === "joinSetup" ? "lobby" : current);
-  }, []);
+  }, [clearJoinLobbyError]);
 
   const handleGameStarted = useCallback((data) => {
     setGameData(data); // Store category, word, role
@@ -45,12 +48,19 @@ function App() {
     setCurrentPage("results");
   }, []);
 
+  const handleLobbyFull = useCallback((data) => {
+    setJoinLobbyError(data?.message ?? "Lobby is full");
+    setRoomCodeInput("");
+    setCurrentPage("joinSetup");
+  }, [setRoomCodeInput, setCurrentPage]);
+
   const { isConnected, sendMessage } = useWebSocket({
     onLobbyCreated: handleLobbyCreated,
     onLobbyUpdate: handleLobbyUpdate,
     onGameStarted: handleGameStarted,
     onGameEnded: handleGameEnded,
     onRevealImposter: handleRevealImposter,
+    onLobbyFull: handleLobbyFull,
   });
 
   // Navigation actions
@@ -60,6 +70,7 @@ function App() {
 
   const handleGoToJoinSetup = () => {
     setCurrentPage("joinSetup");
+    clearJoinLobbyError();
   };
 
   const handleBackToHome = () => {
@@ -70,6 +81,7 @@ function App() {
     setPlayers([]);
     setIsHost(false);
     setPlayerRole(null);
+    clearJoinLobbyError();
   };
 
   // Game actions
@@ -144,6 +156,8 @@ function App() {
           onJoinLobby={handleJoinLobby}
           onBack={handleBackToHome}
           isConnected={isConnected}
+          errorMessage={joinLobbyError}
+          onClearError={clearJoinLobbyError}
         />
       )}
 

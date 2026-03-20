@@ -143,6 +143,9 @@ app.add_middleware(
 
 rooms: Dict[str, Dict] = {}
 
+MIN_PLAYERS = 2
+MAX_PLAYERS = 10
+
 
 @app.websocket("/ws")
 async def websocket_endpoint(ws: WebSocket):
@@ -211,6 +214,16 @@ def generate_room_code():
             return code
 
 
+def _normalize_max_players(value):
+    """Ensure the lobby respects the allowed player range."""
+    try:
+        parsed = int(value)
+    except (TypeError, ValueError):
+        return MAX_PLAYERS
+
+    return max(MIN_PLAYERS, min(parsed, MAX_PLAYERS))
+
+
 async def handle_create_lobby(ws, payload):
     """
     Create a new game lobby.
@@ -234,7 +247,7 @@ async def handle_create_lobby(ws, payload):
                 "ready": False,
             }
         ],
-        "max_players": payload.get("max_players"),
+        "max_players": _normalize_max_players(payload.get("max_players")),
     }
 
     await ws.send_json({"type": "lobby_created", "payload": {"room_code": room_code}})
@@ -261,6 +274,14 @@ async def handle_join_room(ws, payload):
     room = rooms.get(room_code)
     if not room:
         await ws.send_json({"type": "error", "payload": {"message": "Room not found"}})
+        return None
+
+    max_players = room.get("max_players", MAX_PLAYERS)
+    if len(room["players"]) >= max_players:
+        await ws.send_json({
+            "type": "lobby_full",
+            "payload": {"message": "Lobby is full. Please try another room or wait for a slot."},
+        })
         return None
 
     room["players"].append({"name": player_name, "ws": ws, "ready": False})

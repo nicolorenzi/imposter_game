@@ -4,7 +4,7 @@ import { useEffect, useRef, useState, useCallback } from "react";
  * Custom hook for managing WebSocket connection to the game server.
  * Handles connection lifecycle, message routing, and reconnection.
  */
-function useWebSocket({ onLobbyCreated, onLobbyUpdate, onGameStarted, onGameEnded, onRevealImposter }) {
+function useWebSocket({ onLobbyCreated, onLobbyUpdate, onGameStarted, onGameEnded, onRevealImposter, onLobbyFull }) {
   const socket = useRef(null);
   const [isConnected, setIsConnected] = useState(false);
 
@@ -14,17 +14,19 @@ function useWebSocket({ onLobbyCreated, onLobbyUpdate, onGameStarted, onGameEnde
     onGameStarted,
     onGameEnded,
     onRevealImposter,
+    onLobbyFull,
   });
 
   useEffect(() => {
     callbacksRef.current = {
       onLobbyCreated,
       onLobbyUpdate,
+      onLobbyFull,
       onGameStarted,
       onGameEnded,
       onRevealImposter,
     };
-  }, [onLobbyCreated, onLobbyUpdate, onGameStarted, onGameEnded, onRevealImposter]);
+  }, [onLobbyCreated, onLobbyUpdate, onGameStarted, onGameEnded, onRevealImposter, onLobbyFull]);
 
   useEffect(() => {
     const protocol = window.location.protocol === "https:" ? "wss:" : "ws:";
@@ -57,6 +59,9 @@ function useWebSocket({ onLobbyCreated, onLobbyUpdate, onGameStarted, onGameEnde
           break;
         case "error":
           alert(data.payload.message);
+          break;
+        case "lobby_full":
+          callbacksRef.current.onLobbyFull?.(data.payload);
           break;
         case "game_started":
           callbacksRef.current.onGameStarted?.(data.payload);

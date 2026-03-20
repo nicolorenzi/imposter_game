@@ -1,9 +1,25 @@
-function JoinLobbyPage({ name, setName, roomCodeInput, setRoomCodeInput, onJoinLobby, onBack, isConnected }) {
+function JoinLobbyPage({
+  name,
+  setName,
+  roomCodeInput,
+  setRoomCodeInput,
+  onJoinLobby,
+  onBack,
+  isConnected,
+  errorMessage,
+  onClearError,
+}) {
   const handleRoomCodeChange = (e) => {
     const value = e.target.value;
     if (/^\d{0,4}$/.test(value)) {
       setRoomCodeInput(value);
+      onClearError?.();
     }
+  };
+
+  const handleNameChange = (e) => {
+    setName(e.target.value);
+    onClearError?.();
   };
 
   const isFormReady = isConnected && name.trim().length > 0 && roomCodeInput.length === 4;
@@ -21,7 +37,7 @@ function JoinLobbyPage({ name, setName, roomCodeInput, setRoomCodeInput, onJoinL
             className="input-field"
             placeholder="Enter your name"
             value={name}
-            onChange={(e) => setName(e.target.value)}
+            onChange={handleNameChange}
             autoFocus
           />
         </div>
@@ -40,6 +56,10 @@ function JoinLobbyPage({ name, setName, roomCodeInput, setRoomCodeInput, onJoinL
           />
           <p className="helper-text">(4-digit code)</p>
         </div>
+
+        {errorMessage && (
+          <p className="helper-text error-text">{errorMessage}</p>
+        )}
 
         <div className="button-group">
           <button className="btn btn-primary" onClick={onJoinLobby} disabled={!isFormReady}>

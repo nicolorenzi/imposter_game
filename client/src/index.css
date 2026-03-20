@@ -145,6 +145,11 @@ body {
   margin-top: 0.4rem;
 }
 
+.error-text {
+  color: rgba(255, 120, 120, 0.9);
+  font-weight: 500;
+}
+
 .room-code-card {
   background: linear-gradient(160deg, rgba(84, 102, 255, 0.9), rgba(42, 173, 255, 0.9));
   border-radius: 18px;
