@@ -1,4 +1,0 @@
-# Todo
-- Confirm lobby flow still works now that the backend lives in `server/` (create/join, ready, start, reveal). 
-- Expand the React views with better desktop/mobile styling once the layout settles.
-- Add automated tests for server room management if the feature set grows.
